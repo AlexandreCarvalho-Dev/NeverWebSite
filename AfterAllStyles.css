@@ -1,0 +1,161 @@
+/* Reset */
+@import url('https://fonts.googleapis.com/css2?family=Sedan+SC&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* HEADER */
+.bg-header {
+  width: 100%;
+  height: 100vh;
+  background-image: url("Assets/AfterAllBG.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  text-align: center;
+}
+
+#album { 
+    height: 300px; 
+    width: 300px; 
+    z-index: 1; }
+
+.bg-header h1 { 
+    color: white;
+    text-align: center;
+}
+
+.hd-inf {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-right: 550px;
+  padding-bottom: 150px;
+}
+
+.hd-inf h1 { 
+    padding-left: 300px; 
+    font-size: 60px;
+    font-family: "Sedan SC", serif;
+
+}
+
+/* BODY */
+.bg-body {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #110e14;
+  color: white;
+  overflow: hidden;
+}
+
+/* SECÇÃO DE MÚSICAS */
+.musics-header {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 40px min(5vw, 60px);
+}
+
+.musics-left {
+  flex: 1 1 55%;
+}
+
+.musics-title {
+  margin: 0;
+  line-height: 1;
+  font-family: "Sedan SC", serif;
+  font-size: clamp(36px, 6vw, 75px);
+}
+
+.music-list { margin-top: 0; }
+.track { display: flex; align-items: center; gap: 8px; }
+.track h3 { font-size: 30px; padding: 10px 0; font-family: "Sedan SC", serif;}
+
+.play-btn { background: transparent; border: none; cursor: pointer; }
+.music-but { width: 20px; height: 20px; }
+
+/* Coluna do vinil e UI */
+.vinyl-side {
+  position: relative;
+  flex: 0 0 clamp(260px, 32vw, 520px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.global-vinil {
+  width: 100%;
+  max-width: 520px;
+  transform-origin: center;
+  animation: spin 6s linear infinite;
+  animation-play-state: paused;  /* parado por omissão */
+  pointer-events: none;
+}
+
+.global-vinil.is-rotating { animation-play-state: running; }
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Now playing + progress */
+.now-playing {
+  font-size: clamp(16px, 2.2vw, 22px);
+  text-align: center;
+  min-height: 1.4em; /* evita “saltar” quando muda */
+  opacity: 0.9;
+}
+
+.player-progress {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.player-progress .time {
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+/* Estilo do range (cross-browser básico) */
+.player-progress .seek {
+  width: 100%;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.25);
+  outline: none;
+}
+
+.player-progress .seek::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  margin-top: -4px; /* centra no trilho no WebKit */
+}
+
+.player-progress .seek:disabled { opacity: 0.5; cursor: not-allowed; }
+
+@media (max-width: 900px) {
+  .track h3 { font-size: 22px; }
+}

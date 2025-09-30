@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Never</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+        <meta charset="utf-8">
+    </head>
+    <body class="body">
+        <div class="col-12 col-lg-12 video-container">
+                <video autoplay muted loop>
+                 <source src="Assets/videoBG.mp4" type="video/mp4" />
+                </video>
+            <!-- Icon Container-->
+            <div class="col-12 col-lg-3 icons">
+                <a href="https://www.instagram.com/andreteixx/" target="_blank">
+                <img src="Assets/instagram.png" alt="Instagram" class="img-fluid" id="icon">
+                </a>
+                <a href="https://www.instagram.com/alexandrecarvalho99c_x/" target="_blank">
+                <img src="Assets/x.png" alt="X" class="img-fluid" id="icon">
+                </a>
+                <img src="Assets/cart.png" alt="Shopping" id="icon">
+            </div>
+        <!-- Bloco central-->
+            <div class="center-content">
+            <div>
+                <h1 class="title">never</h1>
+                <div class="center-icons">
+                    <a href="https://www.youtube.com/@neveroficial" target="_blank">
+                        <img src="Assets/youtube.png" class="img-fluid icon" alt="YouTube" id="icon">
+                    </a>
+                    <a href="https://open.spotify.com/intl-pt/artist/5fBzUJTj2uvmrpyKYNUalQ?si=bdBQniuSS4aJ3LaPvSe9Bg" target="_blank">
+                        <img src="Assets/spotify.png" class="img-fluid icon" alt="Spotify" id="icon">
+                    </a>
+                </div>
+                <div class="music-card">
+                    <img src="Assets/24freestyle.jpg" alt="card">
+                    <h3>24 Freestyle</h3>
+                <div class="player">
+                <!-- Botão por cima e centrado -->
+                <button class="play-btn" aria-label="Reproduzir">▶</button>
+
+                <!-- Linha: tempo atual | barra | duração -->
+                <div class="track">
+                    <span id="cur" class="time">0:00</span>
+                    <input class="bar" type="range" min="0" max="100" value="0" step="0.1" aria-label="Progresso da faixa">
+                    <span id="dur" class="time">0:00</span>
+                </div>
+
+                <audio id="audio" preload="metadata">
+                    <source src="Assets/24freestyle.mp3" type="audio/mpeg">
+                </audio>
+                </div>
+
+                </div>
+                <div class="classification">
+                    <h3>Classify this music</h3>
+                    <div class="stars">
+                        <img src="Assets/star.png" alt="star" data-index="1">
+                         <img src="Assets/star.png" alt="star" data-index="2">
+                         <img src="Assets/star.png" alt="star" data-index="3">
+                         <img src="Assets/star.png" alt="star" data-index="4">
+                        <img src="Assets/star.png" alt="star" data-index="5">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-12 sec-body">
+        <div class="container py-5 bio">
+            <h1>Bio</h1>
+            <div class="row align-items-start">
+                <!-- Texto: ocupa 7 colunas no desktop, mas 12 (toda a largura) no mobile -->
+                <div class="col-12 col-lg-7 bio-photo">
+                <p>
+                    André “Never” Teixeira is a portuguese rapper from Lisbon, Portugal that transforms his pain into music. 
+                    Started doing music since a young kid since it helped with traumatic life situations. <br><br>
+
+                    Debuting Album after all metion the fail love life and how Never overcame
+                    the hearthbreak and became better and bigger, accomplishing a placement in
+                    one of the most popular portuguese spotify playlist “Na Seda” with the record “Too much” one of his best musics. <br><br>
+
+                    Never is preparing a new project named that talks about he’s currently. 
+                    Real rapper that talks about real life problems so this projects are intense but
+                    it take a will to create such a emotional bagadge.
+                </p>
+                </div>
+
+                <!-- Imagem: ocupa 5 colunas no desktop, mas 12 no mobile -->
+                <div class="col-12 col-lg-5">
+                <img src="Assets/NeverBack.jpg" alt="Photo Bio" class="img-fluid neverbio">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container-fluid px-4 music-section">
+            <div class="container">
+                <div class="col-12 col-lg-12 music-header">
+                    <h1>Music</h1>
+                    <button>Albuns</button>
+                    <button>Singles/EP's</button>
+                    <button>All</button>
+                </div>
+                
+                <div class="row">
+                    <div class="col-12 col-lg-12">
+                        <!-- grid responsivo + gutters -->
+                        <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 musics">  
+
+                            <div class="col py-5">
+                                <div class="musics">
+                                <a href="24freestyle.html" class="music-link">
+                                    <img src="Assets/24freestyle.jpg" alt="24freestyle" class="img-fluid">
+                                    <h3>24 Freestyle</h3>
+                                    <p>2025 - Single</p>
+                                </a>
+                                </div>
+                            </div>
+
+                            <div class="col py-5">
+                                <div class="musics">
+                                <a href="AfterAll.html" class="music-link">
+                                    <img src="Assets/AterAll.png" alt="AfterAll" class="img-fluid">
+                                    <h3>After All</h3>
+                                    <p>2022 - Álbum</p>
+                                </a>
+                                </div>
+                            </div>
+
+                            <div class="col py-5">
+                                <div class="musics">
+                                <a href="MixedFeelings.html" class="music-link">
+                                    <img src="Assets/MixedF.png" alt="Mixed Feelings" class="img-fluid">
+                                    <h3>Mixed Feelings</h3>
+                                    <p>2025 - Single</p>
+                                </a>
+                                </div>
+                            </div>
+
+                            <div class="col py-5">
+                                <div class="musics">
+                                <a href="TooMuch.html" class="music-link">
+                                    <img src="Assets/TooMuch.png" alt="Too Much" id="too-much" class="img-fluid">
+                                    <h3>Too Much</h3>
+                                    <p>2022 - Single</p>
+                                </a>
+                                </div>
+                            </div>
+                            <div class="col py-5 musics">
+                                <img src="Assets/More.png" alt="more" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <section class="container">
+                        <h1>Videos</h1>
+                        <div class="slide-wrapper">
+                            <div class="slider">
+                                <video id="slide-1" width:"640" height="360" controls poster="Assets/poster-toomuch.png">
+                                    <source src="Assets/TooMuchVideo.mp4">
+                                </video>
+                                <video id="slide-2" width="640" height="360" controls poster="Assets/poster-bigger.png">
+                                    <source src="Assets/biggervideo.mp4">
+                                </video>
+                                <video id="slide-3" width="640" height="360" controls poster="Assets/poster-mixedfellings.png">
+                                    <source src="Assets/MixedFeelings.mp4">
+                                </video>
+                            </div>
+                            <div class="slider-nav">
+                                <a href="#slide-1"></a>
+                                <a href="#slide-2"></a>
+                                <a href="#slide-3"></a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="row d-flex gap-5 py-5">
+                        <h1>Merch</h1>
+                    <div class="merch-card">
+                        <a href="PosterAfterAll.html">
+                        <img src="Assets/poster.jpg" alt="Poster After All" id="poster">
+                        <h4>Poster After All</h4>
+                        <p>10€</p>
+                        </a>
+                    </div>
+                    <div class="merch-card text-center">
+                        <a href="shop.html">
+                        <img src="Assets/More.png" alt="Poster After All" id="more">
+                        </a>
+                    </div>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+        
+        <script src="StarsBehavior.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
