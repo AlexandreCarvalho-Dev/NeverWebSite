@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!list || !disc || !seekEl) return;
 
-  const ICONS = { play: 'play.png', pause: 'pause.png' };
+  const ICONS = { play: 'Assets/play.png', pause: 'Assets/pause.png' };
   let activeAudio = null;      // <audio> actualmente a tocar
   let isSeeking = false;       // bloqueia updates enquanto se arrasta
 
