@@ -12,10 +12,20 @@ const fmt = s => {
   return `${m}:${ss}`;
 };
 
-// Mostrar duração quando o metadata carregar
-audio.addEventListener('loadedmetadata', () => {
-  dur.textContent = fmt(audio.duration);
-});
+// --- DURAÇÃO (robusto) ---
+function setDurationIfReady() {
+  if (Number.isFinite(audio.duration) && audio.duration > 0) {
+    dur.textContent = fmt(audio.duration);
+  }
+}
+
+audio.addEventListener('loadedmetadata', setDurationIfReady);
+audio.addEventListener('durationchange', setDurationIfReady);
+audio.addEventListener('canplay', setDurationIfReady);
+
+// Se o áudio já tiver metadata quando o JS correr:
+if (audio.readyState >= 1) setDurationIfReady();
+
 
 // Atualizar barra e tempo durante a reprodução
 audio.addEventListener('timeupdate', () => {
