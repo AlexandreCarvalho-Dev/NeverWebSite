@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      background-image: url(Assets/24FreestyleBG.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    @font-face {
+      font-family: 'Seagram';
+      src: url('Assets/Seagram\ tfb.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    .body-first {
+      display: flex;
+      flex-direction: row;
+      align-items: center;   /* garante que imagem e texto fiquem alinhados no centro */
+      padding-top: 220px;
+      gap: 40px;   
+      justify-content: center;/* espaçamento entre a capa e o texto */
+    }
+
+    .body-first img {
+      height: 300px;
+      width: 300px;
+      flex-shrink: 0; /* não deixa a imagem encolher */
+    }
+
+    .body-sec h1 {
+      font-family: Seagram;
+      color: black;
+      font-size: 75px;
+      margin: 0 0 20px 0; /* retira padding exagerado */
+    }
+
+    .body-third {
+      display: flex;
+      flex-direction: row;
+      align-items: center;  /* alinha verticalmente os itens */
+      gap: 20px;            /* espaço entre elementos */
+    }
+
+    .body-third h4 {
+      font-family: Seagram;
+      font-size: 27px;
+      color: black;
+      margin: 0;
+    }
+
+    .body-third img {
+      height: 50px;
+      width: 50px;
+      cursor: pointer;
+    }
+
+    .player-progress {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .player-progress input[type="range"] {
+      width: 150px;
+    }
+  </style>
+</head>
+<body>
+  <div class="body-content">
+    <div class="body-first">
+      <img src="Assets/24freestyle.jpg" alt="Capa">
+
+      <div class="body-sec">
+        <h1>24 Freestyle</h1>
+
+        <div class="body-third">
+          <h4>2025 - Single</h4>
+          <img src="Assets/play.png" alt="Play Button">
+          <audio id="audio">
+            <source src="Assets/24FSMusic.mp3">
+          </audio>
+
+          <div class="player-progress">
+            <span class="time current">0:00</span>
+            <input
+              type="range"
+              class="seek"
+              value="0"
+              min="0"
+              max="0"
+              step="0.01"
+              aria-label="Procurar no áudio"
+              disabled
+            />
+            <span class="time duration">0:00</span>
+          </div>
+        </div>
+      </div>
+    </div>        
+  </div>
+  <script src="AudioScript.js"></script>
+</body>
+</html>
