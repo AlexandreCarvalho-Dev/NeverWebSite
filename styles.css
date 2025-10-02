@@ -39,7 +39,7 @@
 }
 
 .video-container video {
-    position: fixed; /* ou absolute, mas fixed mantém no scroll */
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -241,7 +241,7 @@
 
 .sec-body {
     background-color: black;
-    height: 2800px;
+    height: 4200px;
     width: 100%;
 }
 
