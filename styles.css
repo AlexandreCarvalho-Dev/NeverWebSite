@@ -10,7 +10,7 @@
 }
 
 .icons {
-  position: fixed;
+  position: absolute;
   top: 1rem;
   right: 1rem;
   display: flex;
@@ -236,7 +236,6 @@
     border-radius: 100%;
     height:300px;
     width: 300px;
-    margin-left: 150px;
 }
 
 .music-header {
@@ -250,7 +249,7 @@
     font-size: 75px;
 }
 
-.music-header button {
+.music-buttons button{
     border: none;
     border-radius: 50px;
     background-color: rgba(128, 128, 128, 0.3);
@@ -336,7 +335,10 @@
 }
 
 .slider video {
-  flex: 1 0 100%;
+  flex: 0 0 100%;         /* cada video ocupa 100% da largura do container */
+  max-width: 100%;        /* nunca ultrapassa a largura */
+  height: auto;           /* mantém proporção */
+  border-radius: 8px;
   scroll-snap-align: start;
 }
 

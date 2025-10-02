@@ -1,91 +1,125 @@
-/* Reset */
+/* Fontes */
 @import url('https://fonts.googleapis.com/css2?family=Sedan+SC&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@font-face {
+  font-family: 'Seagram';
+  src: url('Assets/Seagram%20tfb.ttf') format('truetype'); /* trata o espaço no nome */
+  font-weight: normal;
+  font-style: normal;
 }
 
-/* HEADER */
+/* Reset básico */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* -------------------------
+   HEADER (herói)
+   - Em mobile: imagem em cima, título em baixo (coluna natural do grid)
+   - Em desktop (>=992px): imagem à esquerda e título à direita (2 colunas bootstrap)
+   ------------------------- */
 .bg-header {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-image: url("Assets/AfterAllBackground.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  color: white;
-  text-align: center;
+  align-items: center;      /* centra verticalmente o conteúdo do container interno */
+  color: #fff;
 }
 
-#album { 
-    height: 400px; 
-    width: 400px; 
-    z-index: 1; }
-
-.bg-header h1 { 
-    color: white;
-    text-align: center;
+/* Capa do álbum */
+#album {
+  display: block;
+  max-width: 100%;
+  width: 480px;             /* tamanho alvo em desktop */
+  height: auto;
+  border-radius: 14px;
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.45),
+    inset 0 0 0 1px rgba(255,255,255,0.08);
+  margin: 0 auto;           /* centra em mobile */
 }
 
-.hd-inf:not(h1) {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding-right: 550px;
-  padding-bottom: 150px;
+/* Título ao lado/abaixo da imagem */
+.album-title {
+  font-family: Seagram, "Sedan SC", serif;
+  color: #fff;
+  line-height: 1;
+  text-transform: capitalize;
+  text-shadow: 0 2px 18px rgba(0,0,0,0.35);
+  font-size: clamp(40px, 5vw, 80px);
+  margin-top: 20px;         /* dá espaço quando está por baixo da imagem (mobile) */
 }
 
-.hd-inf h1 {  
-  font-size: 70px;
-  font-family: "Sedan SC", serif;
-  padding-left: 150px;
+@media (min-width: 992px) {
+  /* Em desktop as colunas já ficam lado a lado via col-*-*; aqui só refinamos espaçamentos */
+  .album-title { margin-top: 0; margin-left: 40px; }
 }
 
-/* BODY */
-.bg-body {
+/* -------------------------
+   BODY / MAIN
+   ------------------------- */
+.app-body {
   min-height: 100vh;
   width: 100%;
-  background-color: #110e14;
-  color: white;
+  background-color: #110e14;  /* tema escuro */
+  color: #fff;
   overflow: hidden;
 }
 
-/* SECÇÃO DE MÚSICAS */
+/* -------------------------
+   SECÇÃO DE MÚSICAS + LAYOUT ESQUERDA/DIREITA
+   ------------------------- */
 .musics-header {
   position: relative;
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;      /* o conteúdo interno usa grid bootstrap; aqui só padding */
   gap: 40px;
   padding: 40px min(5vw, 60px);
 }
 
-.musics-left {
-  flex: 1 1 55%;
-}
+.musics-left { flex: 1 1 55%; }
 
+/* Título da lista */
 .musics-title {
-  margin: 0;
+  margin: 0 0 8px 0;
   line-height: 1;
   font-family: "Sedan SC", serif;
   font-size: clamp(36px, 6vw, 75px);
 }
 
+/* Lista e faixas */
 .music-list { margin-top: 0; }
-.track { display: flex; align-items: center; gap: 8px; }
-.track h3 { font-size: 30px; padding: 10px 0; font-family: "Sedan SC", serif;}
+.track {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.track h3 {
+  font-size: 30px;
+  padding: 12px 0;
+  font-family: "Sedan SC", serif;
+  flex: 1 1 auto;
+}
 
-.play-btn { background: transparent; border: none; cursor: pointer; }
-.music-but { width: 20px; height: 20px; }
+/* Botão play/pause (imagem) */
+.play-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  transition: background-color .15s ease-in-out, transform .05s ease-in-out;
+}
+.play-btn:active { transform: scale(0.98); }
+.play-btn:hover { background: rgba(255,255,255,0.06); }
+.music-but { width: 22px; height: 22px; display: block; }
 
-/* Coluna do vinil e UI */
+/* -------------------------
+   COLUNA DIREITA: Vinil + UI
+   ------------------------- */
 .vinyl-side {
   position: relative;
   flex: 0 0 clamp(260px, 32vw, 520px);
@@ -100,10 +134,10 @@
   max-width: 520px;
   transform-origin: center;
   animation: spin 6s linear infinite;
-  animation-play-state: paused;  /* parado por omissão */
+  animation-play-state: paused;   /* parado por omissão; o JS adiciona .is-rotating */
   pointer-events: none;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.35));
 }
-
 .global-vinil.is-rotating { animation-play-state: running; }
 
 @keyframes spin {
@@ -111,12 +145,12 @@
   to   { transform: rotate(360deg); }
 }
 
-/* Now playing + progress */
+/* Now playing + progress bar */
 .now-playing {
   font-size: clamp(16px, 2.2vw, 22px);
   text-align: center;
-  min-height: 1.4em; /* evita “saltar” quando muda */
-  opacity: 0.9;
+  min-height: 1.4em;             /* evita saltos quando o texto muda */
+  opacity: 0.92;
 }
 
 .player-progress {
@@ -130,10 +164,10 @@
 .player-progress .time {
   font-variant-numeric: tabular-nums;
   font-size: 14px;
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
-/* Estilo do range (cross-browser básico) */
+/* Range básico cross-browser */
 .player-progress .seek {
   width: 100%;
   appearance: none;
@@ -142,19 +176,20 @@
   background: rgba(255,255,255,0.25);
   outline: none;
 }
-
 .player-progress .seek::-webkit-slider-thumb {
   appearance: none;
-  width: 14px;
-  height: 14px;
+  width: 14px; height: 14px;
   border-radius: 50%;
-  background: white;
+  background: #fff;
   cursor: pointer;
-  margin-top: -4px; /* centra no trilho no WebKit */
+  margin-top: -4px;              /* alinha no WebKit */
 }
-
 .player-progress .seek:disabled { opacity: 0.5; cursor: not-allowed; }
 
+/* -------------------------
+   Responsividade adicional
+   ------------------------- */
 @media (max-width: 900px) {
   .track h3 { font-size: 22px; }
+  #album { width: 78vw; }        /* capa adapta melhor em ecrãs pequenos */
 }

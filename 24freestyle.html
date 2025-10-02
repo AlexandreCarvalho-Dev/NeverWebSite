@@ -3,85 +3,136 @@
 <head>
   <meta charset="UTF-8">
   <style>
+        /* Background e fonte */
+    /* Fundo */
+    html, body { height: 100%; }
     body {
+      margin: 0;
       background-image: url(Assets/24FreestyleBG.png);
       background-size: cover;
+      background-position: center;
       background-repeat: no-repeat;
+      background-color: #000;      /* evita branco quando a página é mais alta que a imagem */
     }
 
+    /* Fonte */
     @font-face {
       font-family: 'Seagram';
-      src: url('Assets/Seagram\ tfb.ttf') format('truetype');
-      font-weight: normal;
-      font-style: normal;
+      src: url('Assets/Seagram tfb.ttf') format('truetype');
     }
 
+    /* Content wrapper */
+    .body-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: clamp(16px, 4vw, 48px);
+      min-height: 100svh;          /* ocupa toda a altura útil em mobile */
+    }
+
+    /* Layout principal */
     .body-first {
-      display: flex;
-      flex-direction: row;
-      align-items: center;   /* garante que imagem e texto fiquem alinhados no centro */
-      padding-top: 220px;
-      gap: 40px;   
-      justify-content: center;/* espaçamento entre a capa e o texto */
+      display: grid;
+      grid-template-columns: 300px 1fr;      /* desktop: capa à esquerda, texto à direita */
+      align-items: center;
+      gap: clamp(16px, 4vw, 48px);
+      padding-top: clamp(24px, 12vh, 200px);
     }
 
-    .body-first img {
-      height: 300px;
-      width: 300px;
-      flex-shrink: 0; /* não deixa a imagem encolher */
+    /* Capa */
+    .body-first > img {
+      width: clamp(180px, 24vw, 320px);
+      height: auto;
+      border-radius: 4px;
     }
 
+    /* Título */
     .body-sec h1 {
-      font-family: Seagram;
+      font-family: Seagram, serif;
       color: black;
-      font-size: 75px;
-      margin: 0 0 20px 0; /* retira padding exagerado */
+      font-size: clamp(32px, 6vw, 80px);
+      line-height: 1.05;
+      margin: 0 0 12px 0;
     }
 
+    /* Linha do player */
     .body-third {
       display: flex;
-      flex-direction: row;
-      align-items: center;  /* alinha verticalmente os itens */
-      gap: 20px;            /* espaço entre elementos */
+      align-items: center;
+      flex-wrap: wrap;
+      gap: clamp(10px, 2vw, 20px);
     }
 
+    /* Texto metadata */
     .body-third h4 {
-      font-family: Seagram;
-      font-size: 27px;
+      font-family: Seagram, serif;
+      font-size: clamp(16px, 2.2vw, 28px);
       color: black;
       margin: 0;
     }
 
-    .body-third img {
-      height: 50px;
-      width: 50px;
+    /* O culpado do “play gigante” — fixa o tamanho e impede o crescimento no flex */
+    .play-btn {
+      width: clamp(32px, 44px, 50px);   /* escolhe um tamanho estável */
+      height: auto;
+      flex: 0 0 auto;                   /* não cresce dentro do flex */
+      object-fit: contain;
       cursor: pointer;
+      user-select: none;
     }
 
+    /* Barra de progresso ocupa o espaço restante, mas com limites */
     .player-progress {
       display: flex;
       align-items: center;
       gap: 10px;
+      min-width: 180px;
+      flex: 1 1 auto;
     }
 
     .player-progress input[type="range"] {
-      width: 150px;
+      width: min(65vw, 420px);
     }
-  </style>
+
+    .time {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: clamp(12px, 1.6vw, 16px);
+      color: black;
+    }
+
+    /* ---------- Breakpoints ---------- */
+
+    /* Tablet e abaixo: empilha e centra tudo */
+    @media (max-width: 991px) {
+      .body-first {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+        padding-top: clamp(24px, 10vh, 140px);
+      }
+      .body-third { justify-content: center; }
+    }
+
+    /* Telemóveis: barra um pouco mais curta */
+    @media (max-width: 576px) {
+      .player-progress input[type="range"] {
+        width: min(75vw, 360px);
+      }
+    }
+</style>
 </head>
 <body>
   <div class="body-content">
     <div class="body-first">
-      <img src="Assets/24freestyle.jpg" alt="Capa">
+      <img src="Assets/24freestyle.jpg" alt="Capa" />
 
       <div class="body-sec">
         <h1>24 Freestyle</h1>
 
         <div class="body-third">
           <h4>2025 - Single</h4>
-          <img src="Assets/play.png" alt="Play Button">
+          <img src="Assets/play.png" alt="Play Button" class="play-btn" />
           <audio id="audio">
-            <source src="Assets/24FSMusic.mp3">
+            <source src="Assets/24FSMusic.mp3" />
           </audio>
 
           <div class="player-progress">
@@ -89,12 +140,8 @@
             <input
               type="range"
               class="seek"
-              value="0"
-              min="0"
-              max="0"
-              step="0.01"
-              aria-label="Procurar no áudio"
-              disabled
+              value="0" min="0" max="0" step="0.01"
+              aria-label="Procurar no áudio" disabled
             />
             <span class="time duration">0:00</span>
           </div>

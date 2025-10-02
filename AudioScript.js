@@ -11,32 +11,40 @@
 
     let isUserSeeking = false;
 
+    const getBtnImg = () =>
+      playBtn.tagName.toLowerCase() === "img" ? playBtn : playBtn.querySelector("img");
+
     function isPlaying() {
       return !audio.paused && !audio.ended;
     }
 
     function updateBtnIcon() {
-      // Suporta <img> ou texto no botão
-      if (playBtn.tagName.toLowerCase() === "img") {
-        playBtn.src = isPlaying() ? icons.pause : icons.play;
-        playBtn.alt = isPlaying() ? "Pause Button" : "Play Button";
+      const img = getBtnImg();
+      if (img) {
+        img.src = isPlaying() ? icons.pause : icons.play;
       } else {
         playBtn.textContent = isPlaying() ? "⏸" : "▶";
         playBtn.setAttribute("aria-label", isPlaying() ? "Pausar" : "Reproduzir");
       }
     }
 
+    // Metadados carregados: define duração e ativa seek
     audio.addEventListener("loadedmetadata", () => {
       duration.textContent = formatTime(audio.duration);
       seek.max = String(audio.duration || 0);
       seek.disabled = false;
     });
 
+    // Atualiza a barra/tempo corrente
     audio.addEventListener("timeupdate", () => {
-      if (isUserSeeking) return; 
+      if (isUserSeeking) return;
       seek.value = String(audio.currentTime || 0);
       current.textContent = formatTime(audio.currentTime || 0);
     });
+
+    // Atualiza ícone quando o estado real muda
+    audio.addEventListener("play", updateBtnIcon);
+    audio.addEventListener("pause", updateBtnIcon);
 
     audio.addEventListener("ended", () => {
       audio.currentTime = 0;
@@ -45,15 +53,17 @@
       updateBtnIcon();
     });
 
-    playBtn.addEventListener("click", () => {
-      if (audio.paused) {
-        audio.play().catch(() => {});
-      } else {
-        audio.pause();
+    // Click Play/Pause
+    playBtn.addEventListener("click", async () => {
+      try {
+        if (audio.paused) await audio.play();
+        else audio.pause();
+      } catch (e) {
+        console.warn("Erro ao reproduzir áudio:", e);
       }
-      updateBtnIcon();
     });
 
+    // Interação com o seek
     seek.addEventListener("input", () => {
       isUserSeeking = true;
       current.textContent = formatTime(Number(seek.value));
@@ -63,6 +73,7 @@
       isUserSeeking = false;
     });
 
+    // Tecla Espaço (evita conflito quando o foco está no range)
     document.addEventListener("keydown", (e) => {
       if (e.code === "Space") {
         if (document.activeElement === seek) return;
@@ -71,6 +82,7 @@
       }
     });
 
+    // Estado inicial
     seek.disabled = true;
     current.textContent = "0:00";
     duration.textContent = "0:00";
@@ -82,7 +94,7 @@
   window.addEventListener("DOMContentLoaded", () => {
     setupAudioPlayer({
       audio: $("#audio"),
-      playBtn: document.querySelector('.body-third img[alt="Play Button"]') || $(".play-btn"),
+      playBtn: $("#playBtn"),
       seek: $(".seek"),
       current: $(".time.current"),
       duration: $(".time.duration"),
