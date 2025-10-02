@@ -6,46 +6,55 @@
     return m + ":" + String(s).padStart(2, "0");
   }
 
+  // procura o primeiro elemento que existir entre várias opções
+  const pick = (arr) => arr.map(s => document.querySelector(s)).find(Boolean);
+
   function setupAudioPlayer({ audio, playBtn, seek, current, duration, icons }) {
-    if (!audio || !playBtn || !seek || !current || !duration) return;
+    if (!audio || !playBtn || !seek || !current || !duration) {
+      console.warn("Player: elemento(s) em falta", { audio, playBtn, seek, current, duration });
+      return;
+    }
 
     let isUserSeeking = false;
 
     const getBtnImg = () =>
       playBtn.tagName.toLowerCase() === "img" ? playBtn : playBtn.querySelector("img");
 
-    function isPlaying() {
-      return !audio.paused && !audio.ended;
-    }
+    const isPlaying = () => !audio.paused && !audio.ended;
 
     function updateBtnIcon() {
       const img = getBtnImg();
       if (img) {
         img.src = isPlaying() ? icons.pause : icons.play;
-      } else {
-        playBtn.textContent = isPlaying() ? "⏸" : "▶";
-        playBtn.setAttribute("aria-label", isPlaying() ? "Pausar" : "Reproduzir");
       }
+      // acessibilidade + fallback para botões “CSS-only”
+      playBtn.setAttribute("aria-label", isPlaying() ? "Pausar" : "Reproduzir");
+      playBtn.classList.toggle("is-playing", isPlaying());
     }
 
-    // Metadados carregados: define duração e ativa seek
-    audio.addEventListener("loadedmetadata", () => {
-      duration.textContent = formatTime(audio.duration);
-      seek.max = String(audio.duration || 0);
-      seek.disabled = false;
-    });
+    // Metadados
+    function setDurationIfReady() {
+      if (Number.isFinite(audio.duration) && audio.duration > 0) {
+        duration.textContent = formatTime(audio.duration);
+        seek.max = String(audio.duration);
+        seek.disabled = false;
+      }
+    }
+    audio.addEventListener("loadedmetadata", setDurationIfReady);
+    audio.addEventListener("durationchange", setDurationIfReady);
+    if (audio.readyState >= 1) setDurationIfReady();
 
-    // Atualiza a barra/tempo corrente
+    // Progresso
     audio.addEventListener("timeupdate", () => {
       if (isUserSeeking) return;
-      seek.value = String(audio.currentTime || 0);
-      current.textContent = formatTime(audio.currentTime || 0);
+      const t = audio.currentTime || 0;
+      seek.value = String(t);
+      current.textContent = formatTime(t);
     });
 
-    // Atualiza ícone quando o estado real muda
+    // Estado → ícone
     audio.addEventListener("play", updateBtnIcon);
     audio.addEventListener("pause", updateBtnIcon);
-
     audio.addEventListener("ended", () => {
       audio.currentTime = 0;
       current.textContent = "0:00";
@@ -53,7 +62,7 @@
       updateBtnIcon();
     });
 
-    // Click Play/Pause
+    // Play/Pause
     playBtn.addEventListener("click", async () => {
       try {
         if (audio.paused) await audio.play();
@@ -63,7 +72,7 @@
       }
     });
 
-    // Interação com o seek
+    // Seek
     seek.addEventListener("input", () => {
       isUserSeeking = true;
       current.textContent = formatTime(Number(seek.value));
@@ -73,7 +82,7 @@
       isUserSeeking = false;
     });
 
-    // Tecla Espaço (evita conflito quando o foco está no range)
+    // Tecla espaço (ignora quando o foco está no range)
     document.addEventListener("keydown", (e) => {
       if (e.code === "Space") {
         if (document.activeElement === seek) return;
@@ -89,15 +98,14 @@
     updateBtnIcon();
   }
 
-  function $(sel) { return document.querySelector(sel); }
-
   window.addEventListener("DOMContentLoaded", () => {
     setupAudioPlayer({
-      audio: $("#audio"),
-      playBtn: $("#playBtn"),
-      seek: $(".seek"),
-      current: $(".time.current"),
-      duration: $(".time.duration"),
+      // aceita várias convenções de IDs/classes
+      audio:   pick(["#audio", "audio"]),
+      playBtn: pick(["#playBtn", ".play-btn", 'button[aria-label="Reproduzir"]']),
+      seek:    pick([".seek", "#seek", ".bar", 'input[type="range"]']),
+      current: pick([".time.current", "#cur"]),
+      duration:pick([".time.duration", "#dur"]),
       icons: { play: "Assets/play.png", pause: "Assets/pause.png" }
     });
   });

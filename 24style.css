@@ -1,0 +1,40 @@
+body {
+    background-image: url(Assets/24FreestyleBG.png);
+}
+
+/* Tipografia fluida (não mexe no desktop graças ao clamp) */
+.title { 
+  font-weight: 700;
+  line-height: 1.1;
+  font-size: clamp(2.2rem, 8vw, 4.2rem); /* cresce no desktop, encolhe no tel. */
+}
+
+/* A capa nunca excede larguras confortáveis e mantém proporção */
+.cover { 
+  width: 100%;
+  height: auto;
+  max-width: 520px; /* igual ao que terias no desktop */
+}
+
+/* Garante que o slider não “parte” o layout no mobile */
+.range-wrap { 
+  width: 100%;
+  min-width: 0;
+}
+#seek { 
+  /* no iOS o range pode ficar gigante; limita a altura visual */
+  height: 2px;
+}
+
+/* Overrides apenas para < 768px */
+@media (max-width: 767.98px) {
+  /* Espaçamento mais compacto no telemóvel */
+  .container { padding-top: 1.25rem; padding-bottom: 2rem; }
+
+  /* Evita overflow horizontal por imagens/fontes grandes */
+  .row { margin-left: 0; margin-right: 0; }
+  body { overflow-x: hidden; }
+
+  /* Centraliza e limita o bloco todo no mobile para caber na “lona” do iPhone */
+  .cover { max-width: 420px; }
+}

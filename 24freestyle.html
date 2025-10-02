@@ -1,154 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <style>
-        /* Background e fonte */
-    /* Fundo */
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      background-image: url(Assets/24FreestyleBG.png);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-color: #000;      /* evita branco quando a página é mais alta que a imagem */
-    }
-
-    /* Fonte */
-    @font-face {
-      font-family: 'Seagram';
-      src: url('Assets/Seagram tfb.ttf') format('truetype');
-    }
-
-    /* Content wrapper */
-    .body-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: clamp(16px, 4vw, 48px);
-      min-height: 100svh;          /* ocupa toda a altura útil em mobile */
-    }
-
-    /* Layout principal */
-    .body-first {
-      display: grid;
-      grid-template-columns: 300px 1fr;      /* desktop: capa à esquerda, texto à direita */
-      align-items: center;
-      gap: clamp(16px, 4vw, 48px);
-      padding-top: clamp(24px, 12vh, 200px);
-    }
-
-    /* Capa */
-    .body-first > img {
-      width: clamp(180px, 24vw, 320px);
-      height: auto;
-      border-radius: 4px;
-    }
-
-    /* Título */
-    .body-sec h1 {
-      font-family: Seagram, serif;
-      color: black;
-      font-size: clamp(32px, 6vw, 80px);
-      line-height: 1.05;
-      margin: 0 0 12px 0;
-    }
-
-    /* Linha do player */
-    .body-third {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: clamp(10px, 2vw, 20px);
-    }
-
-    /* Texto metadata */
-    .body-third h4 {
-      font-family: Seagram, serif;
-      font-size: clamp(16px, 2.2vw, 28px);
-      color: black;
-      margin: 0;
-    }
-
-    /* O culpado do “play gigante” — fixa o tamanho e impede o crescimento no flex */
-    .play-btn {
-      width: clamp(32px, 44px, 50px);   /* escolhe um tamanho estável */
-      height: auto;
-      flex: 0 0 auto;                   /* não cresce dentro do flex */
-      object-fit: contain;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    /* Barra de progresso ocupa o espaço restante, mas com limites */
-    .player-progress {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-width: 180px;
-      flex: 1 1 auto;
-    }
-
-    .player-progress input[type="range"] {
-      width: min(65vw, 420px);
-    }
-
-    .time {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      font-size: clamp(12px, 1.6vw, 16px);
-      color: black;
-    }
-
-    /* ---------- Breakpoints ---------- */
-
-    /* Tablet e abaixo: empilha e centra tudo */
-    @media (max-width: 991px) {
-      .body-first {
-        grid-template-columns: 1fr;
-        justify-items: center;
-        text-align: center;
-        padding-top: clamp(24px, 10vh, 140px);
-      }
-      .body-third { justify-content: center; }
-    }
-
-    /* Telemóveis: barra um pouco mais curta */
-    @media (max-width: 576px) {
-      .player-progress input[type="range"] {
-        width: min(75vw, 360px);
-      }
-    }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="24style.css">
 </head>
-<body>
-  <div class="body-content">
-    <div class="body-first">
-      <img src="Assets/24freestyle.jpg" alt="Capa" />
+<body class="bg-dark text-white">
+  <div class="container py-4 py-md-5 min-vh-100 d-flex align-items-center">
+    <div class="row justify-content-center align-items-center g-4 w-100">
 
-      <div class="body-sec">
-        <h1>24 Freestyle</h1>
-
-        <div class="body-third">
-          <h4>2025 - Single</h4>
-          <img src="Assets/play.png" alt="Play Button" class="play-btn" />
-          <audio id="audio">
-            <source src="Assets/24FSMusic.mp3" />
-          </audio>
-
-          <div class="player-progress">
-            <span class="time current">0:00</span>
-            <input
-              type="range"
-              class="seek"
-              value="0" min="0" max="0" step="0.01"
-              aria-label="Procurar no áudio" disabled
-            />
-            <span class="time duration">0:00</span>
-          </div>
-        </div>
+      <!-- Capa -->
+      <div class="col-12 col-md-5 text-center">
+        <img src="Assets/24freestyle.jpg"
+             alt="Capa 24 Freestyle"
+             class="img-fluid rounded shadow-sm cover">
       </div>
-    </div>        
+
+      <!-- Conteúdo -->
+      <div class="col-12 col-md-7 text-center text-md-start">
+        <h1 class="title my-2 my-md-0">24 Freestyle</h1>
+
+        <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center justify-content-md-start gap-3 my-3">
+          <span class="fs-6 text-white-50">2025 — Single</span>
+
+          <button id="playBtn"
+                  class="btn btn-light rounded-circle p-0 d-inline-flex align-items-center justify-content-center"
+                  style="width:44px;height:44px"
+                  type="button" aria-label="Reproduzir">
+            <img id="playIcon" src="Assets/play.png" alt="" width="18" height="18">
+          </button>
+        </div>
+
+        <div class="d-flex align-items-center gap-2 justify-content-center justify-content-md-start range-wrap">
+          <span id="cur" class="small text-white-50">0:00</span>
+          <input id="seek" type="range" class="form-range flex-grow-1 m-0" min="0" max="0" step="0.01" value="0" disabled>
+          <span id="dur" class="small text-white-50">0:00</span>
+        </div>
+
+        <audio id="audio" preload="metadata">
+          <source src="Assets/24FSMusic.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </div>
   </div>
+
   <script src="AudioScript.js"></script>
 </body>
 </html>
+
