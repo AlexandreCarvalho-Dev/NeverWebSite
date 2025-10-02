@@ -5,6 +5,13 @@
     font-style: normal;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
 .sec-body {
   background: linear-gradient(to bottom, #094c8299, #00000083, #d736c783);
 }
@@ -37,6 +44,16 @@
 .center-icons #icon {
     padding-left: 15px;
 }
+
+.video-container {
+  position: relative;
+  height: 100vh;  /* ocupa sempre 100% da altura da tela */
+  width: 100%;
+  overflow: hidden; /* corta qualquer excesso */
+  margin: 0;
+  padding: 0;
+}
+
 
 .video-container video {
     position: absolute;
@@ -240,6 +257,8 @@
 
 
 .sec-body {
+  margin: 0;
+  padding: 0;
     background-color: black;
     height: 4200px;
     width: 100%;
