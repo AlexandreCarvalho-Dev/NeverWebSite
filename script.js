@@ -39,11 +39,11 @@ audio.addEventListener('timeupdate', () => {
 btn.addEventListener('click', () => {
   if (audio.paused) {
     audio.play();
-    btn.textContent = '⏸';
+    btn.classList.add('is-playing');
     btn.setAttribute('aria-label', 'Pausar');
   } else {
     audio.pause();
-    btn.textContent = '▶';
+    btn.classList.remove('is-playing');
     btn.setAttribute('aria-label', 'Reproduzir');
   }
 });
