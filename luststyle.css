@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Seagram';
+    src: url('Assets/Seagram\ tfb.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     background-image: url(Assets/LustBackground.png);
 }
@@ -19,7 +26,46 @@ body {
   min-width: 0;
 }
 #seek { 
-  height: 2px;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: white;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+#seek::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  background: url("Assets/LustBall.png");
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+}
+
+#seek::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  background: url("Assets/LustBall.png");
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+}
+
+#seek::-ms-thumb {
+  width: 24px;
+  height: 24px;
+  background: url("Assets/LustBall.png");
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+}
+
+.music-inf {
+  font-family: Seagram;
+  color: black
 }
 
 @media (max-width: 767.98px) {
@@ -29,4 +75,17 @@ body {
   body { overflow-x: hidden; }
 
   .cover { max-width: 420px; }
+}
+
+#playBtn {
+  background: none !important;   /* retira o fundo */
+  border: none !important;       /* retira a borda */
+  border-radius: 0 !important;   /* remove o arredondamento */
+  padding: 0;                    /* remove espaçamento extra */
+}
+
+#playIcon {
+  filter: invert(1); /* isto inverte a cor do ícone, se a imagem for preta muda para branco e vice-versa */
+  width: 24px;
+  height: 24px;
 }

@@ -1,40 +1,91 @@
+@font-face {
+    font-family: 'Seagram';
+    src: url('Assets/Seagram\ tfb.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     background-image: url(Assets/24FreestyleBG.png);
 }
 
-/* Tipografia fluida (não mexe no desktop graças ao clamp) */
 .title { 
   font-weight: 700;
   line-height: 1.1;
-  font-size: clamp(2.2rem, 8vw, 4.2rem); /* cresce no desktop, encolhe no tel. */
+  font-size: clamp(2.2rem, 8vw, 4.2rem); 
 }
 
-/* A capa nunca excede larguras confortáveis e mantém proporção */
 .cover { 
   width: 100%;
   height: auto;
-  max-width: 520px; /* igual ao que terias no desktop */
+  max-width: 520px; 
 }
 
-/* Garante que o slider não “parte” o layout no mobile */
 .range-wrap { 
   width: 100%;
   min-width: 0;
 }
 #seek { 
-  /* no iOS o range pode ficar gigante; limita a altura visual */
-  height: 2px;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: white;
+  border-radius: 2px;
+  cursor: pointer;
 }
 
-/* Overrides apenas para < 768px */
+#seek::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  background: black;
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+}
+
+#seek::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  background: black;
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+}
+
+#seek::-ms-thumb {
+  width: 24px;
+  height: 24px;
+  background: black;
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+}
+
+.music-inf {
+  font-family: Seagram;
+  color: black
+}
+
 @media (max-width: 767.98px) {
-  /* Espaçamento mais compacto no telemóvel */
   .container { padding-top: 1.25rem; padding-bottom: 2rem; }
 
-  /* Evita overflow horizontal por imagens/fontes grandes */
   .row { margin-left: 0; margin-right: 0; }
   body { overflow-x: hidden; }
 
-  /* Centraliza e limita o bloco todo no mobile para caber na “lona” do iPhone */
   .cover { max-width: 420px; }
+}
+
+#playBtn {
+  background: none !important;   /* retira o fundo */
+  border: none !important;       /* retira a borda */
+  border-radius: 0 !important;   /* remove o arredondamento */
+  padding: 0;                    /* remove espaçamento extra */
+}
+
+#playIcon {
+  filter: invert(1); /* isto inverte a cor do ícone, se a imagem for preta muda para branco e vice-versa */
+  width: 24px;
+  height: 24px;
 }
