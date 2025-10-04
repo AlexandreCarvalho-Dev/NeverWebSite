@@ -22,7 +22,7 @@ html, body {
   right: 1rem;
   display: flex;
   gap: 0.75rem;
-  justify-content: flex-end; /* mantém à direita */
+  justify-content: flex-end; 
   align-items: center;
 }
 
@@ -47,9 +47,9 @@ html, body {
 
 .video-container {
   position: relative;
-  height: 100vh;  /* ocupa sempre 100% da altura da tela */
+  height: 100vh; 
   width: 100%;
-  overflow: hidden; /* corta qualquer excesso */
+  overflow: hidden; 
   margin: 0;
   padding: 0;
 }
@@ -62,16 +62,16 @@ html, body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: blur(15px);/* mantém a proporção e cobre tudo */
-    z-index: -1; /* manda o vídeo para trás */
+    filter: blur(15px);
+    z-index: -1; 
 }
 
 .center-content {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;   /* ocupa altura total */
-  width: 100%;         /* ocupa largura total */
+  min-height: 100vh;   
+  width: 100%;        
   text-align: center;
 }
 
@@ -102,7 +102,7 @@ html, body {
 .music-card {
   position: relative;
   overflow: hidden;
-  display: flex;              /* flex em vez de block */
+  display: flex;            
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -111,14 +111,14 @@ html, body {
   border-radius: 30px;
   background-color: rgba(128, 128, 128, 0.3);
   margin-top: 20px;;
-  width: 100%;                /* ocupa toda a largura */
-  max-width: 100%;            /* garante que não encolhe */
-  padding: 20px;              /* espaçamento interno */
-  box-sizing: border-box;     /* inclui o padding dentro da largura */
+  width: 100%;               
+  max-width: 100%;            
+  padding: 20px;             
+  box-sizing: border-box;    
 }
 
 .player {
-  width: 100%;                /* ocupa toda a largura da card */
+  width: 100%;                
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -126,7 +126,7 @@ html, body {
 }
 
 .play-btn{
-  --size: 52px;          /* ajuste global */
+  --size: 52px;      
   --bg: #fff;
   --fg: #111;
   width: var(--size);
@@ -138,7 +138,7 @@ html, body {
   display: grid;
   place-items: center;
   outline: none;
-  line-height: 0;        /* evita “salto” de baseline em iOS */
+  line-height: 0;        
   -webkit-tap-highlight-color: transparent;
   box-shadow: 0 2px 12px rgba(0,0,0,.25);
 }
@@ -164,13 +164,13 @@ html, body {
     linear-gradient(var(--fg) 0 0) right/6px 100% no-repeat;
 }
 
-/* Afinações para mobile */
+/* Mobile fixes */
 @media (max-width: 576px){
   .play-btn{ --size: 46px; }
   .track{ max-width: 360px; }
 }
 
-/* Player bar*/
+/* Barra de progresso */
 .track {
   width: 100%;               
   max-width: 680px;           
@@ -188,7 +188,6 @@ html, body {
   min-width: 48px;
 }
 
-/* Barra de progresso */
 .bar{
   appearance: none;
   width: 100%;
@@ -243,25 +242,25 @@ html, body {
   width: 40px;
   height: 40px;
   cursor: pointer;
-  filter: grayscale(100%) brightness(200%); /* base: branco */
+  filter: grayscale(100%) brightness(200%); 
   transition: filter 0.2s;
 }
 
 .stars img.hovered {
-  filter: sepia(100%) saturate(200%) hue-rotate(10deg) brightness(100%); /* amarelo */
+  filter: sepia(100%) saturate(200%) hue-rotate(10deg) brightness(100%);
 }
 
 .stars img.active {
-  filter: sepia(100%) saturate(500%) hue-rotate(10deg) brightness(90%); /* dourado */
+  filter: sepia(100%) saturate(500%) hue-rotate(10deg) brightness(90%);
 }
 
 
 .sec-body {
   margin: 0;
   padding: 0;
-    background-color: black;
-    height: 4200px;
-    width: 100%;
+  background-color: black;
+  height: 4200px;
+  width: 100%;
 }
 
 .bio h1 {
@@ -321,19 +320,19 @@ html, body {
 }
 
 .musics img {
-  width: 100%;        /* ocupa a largura da coluna */
-  max-width: 220px;   /* tamanho máximo que queres */
-  height: auto;       /* mantém proporção */
-  margin: 0 auto;     /* centra horizontalmente */
+  width: 100%;        
+  max-width: 220px;   
+  height: auto;      
+  margin: 0 auto;     
   display: block;
-  border-radius: 10px; /* opcional */
+  border-radius: 10px; 
 }
 
 .musics .music-link{
   display: block;
   text-decoration: none;
   color: white;
-  text-align: left;        /* ou center, se preferires */
+  text-align: center;        
 }
 
 .musics .music-link img{
@@ -384,9 +383,9 @@ html, body {
 }
 
 .slider video {
-  flex: 0 0 100%;         /* cada video ocupa 100% da largura do container */
-  max-width: 100%;        /* nunca ultrapassa a largura */
-  height: auto;           /* mantém proporção */
+  flex: 0 0 100%;       
+  max-width: 100%;        
+  height: auto;           
   border-radius: 8px;
   scroll-snap-align: start;
 }
@@ -445,4 +444,10 @@ slider-nav a:hover {
 
 #poster {
   cursor: pointer;
+}
+
+.section-title {
+  text-align: left;
+  color: white;
+  font-size: 75px;
 }

@@ -11,7 +11,6 @@
                 <video autoplay muted loop>
                  <source src="Assets/VideoBackground.mp4" type="video/mp4" id="background" />
                 </video>
-            <!-- Icon Container-->
             <div class="col-12 col-lg-3 icons">
                 <a href="https://www.instagram.com/andreteixx/" target="_blank">
                 <img src="Assets/instagram.png" alt="Instagram" class="img-fluid" id="icon">
@@ -21,8 +20,7 @@
                 </a>
                 <img src="Assets/cart.png" alt="Shopping" id="icon">
             </div>
-         <!-- Bloco central-->
-            <div class="center-content">
+        <div class="center-content">
             <div>
                 <h1 class="title">never</h1>
                 <div class="center-icons">
@@ -37,10 +35,8 @@
                     <img src="Assets/LustCapa.webp" alt="card">
                     <h3>Lust</h3>
                 <div class="player">
-                <!-- Botão por cima e centrado -->
                 <button class="play-btn" aria-label="Reproduzir" type="button"></button>
 
-                <!-- Linha: tempo atual | barra | duração -->
                 <div class="track">
                     <span id="cur" class="time">0:00</span>
                     <input class="bar" type="range" min="0" max="100" value="0" step="0.1" aria-label="Progresso da faixa">
@@ -67,11 +63,10 @@
         </div>
     </div>
 
-    <div class="col-12 col-lg-12 sec-body">
-        <div class="container py-5 bio">
+    <div class="col-12 col-lg-12 col-xl-1 sec-body">
+        <div class="container-fluid py-5 bio">
             <h1>Bio</h1>
             <div class="row align-items-start">
-                <!-- Texto: ocupa 7 colunas no desktop, mas 12 (toda a largura) no mobile -->
                 <div class="col-12 col-lg-7 bio-photo">
                 <p>
                     Never is more than an artist — he’s a persona born from survival. <br>
@@ -85,7 +80,6 @@
                 </p>
                 </div>
 
-                <!-- Imagem: ocupa 5 colunas no desktop, mas 12 no mobile -->
                 <div class="col-12 col-lg-5">
                 <img src="Assets/NeverBack.webp" alt="Photo Bio" class="img-fluid neverbio ms-lg-5 mt-4 mt-lg-0">
                 </div>
@@ -94,14 +88,13 @@
 
 
         <div class="container-fluid px-4 music-section">
-            <div class="container">
-                <div class="row"></div>
+                <div class="row">
                     <div class="col-12 col-lg-12 music-header">
-                        <h1>Music</h1>
+                        <h1 class="section-title">Music</h1>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 music-buttons">
+                    <div class="col-12 col-xl-6 music-buttons">
                         <button>Albuns</button>
                         <button>Singles/EP's</button>
                         <button>All</button>
@@ -111,7 +104,7 @@
                 <div class="row">
                     <div class="col-12 col-lg-12">
                         <!-- grid responsivo + gutters -->
-                        <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 musics">  
+                        <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 row-cols-xl-6 musics">  
                             
                             <div class="col py-5">
                                 <div class="musics">
@@ -160,8 +153,8 @@
                         </div>
                     </div>
                 </div>
-                    <section class="container">
-                        <h1>Videos</h1>
+                    <section class="container-fluid">
+                        <h1 class="section-title">Videos</h1>
                         <div class="slide-wrapper">
                             <div class="slider">
                                 <video id="slide-1" width:"640" height="360" controls poster="Assets/poster-toomuch.webp">
@@ -200,7 +193,6 @@
 
             </div>
         </div>
-    </div>
         
         <script src="StarsBehavior.js"></script>
         <script src="script.js"></script>
