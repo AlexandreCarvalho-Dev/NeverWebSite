@@ -7,10 +7,10 @@
         <meta charset="utf-8">
     </head>
     <body class="body">
-        <div class="col-12 col-lg-12 video-container">
-                <video autoplay muted loop>
-                 <source src="Assets/VideoBackground.mp4" type="video/mp4" id="background" />
-                </video>
+        <div class="video-container">
+                <video autoplay muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1">
+                <source src="Assets/VideoBackground.mp4" type="video/mp4">
+            </video>
             <div class="col-12 col-lg-3 icons">
                 <a href="https://www.instagram.com/andreteixx/" target="_blank">
                 <img src="Assets/instagram.png" alt="Instagram" class="img-fluid" id="icon">
@@ -148,7 +148,9 @@
 
 
                             <div class="col py-5 musics">
-                                <img src="Assets/More.png" alt="more" class="img-fluid">
+                                <a href="musics.html">
+                                    <img src="Assets/More.png" alt="more" class="img-fluid">
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -196,5 +198,6 @@
         
         <script src="StarsBehavior.js"></script>
         <script src="script.js"></script>
+        
     </body>
 </html>

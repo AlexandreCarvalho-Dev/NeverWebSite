@@ -1,0 +1,118 @@
+@font-face {
+    font-family: 'Seagram';
+    src: url('Assets/Seagram\ tfb.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.elemento {
+    background-color: black;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+header h1 {
+    font-size: 150px;
+    font-family: Seagram;
+    color: white;
+}
+
+.capa {
+    width: 500px;
+    height: 500px;
+    
+}
+
+.music-lust {
+    background-image: url("Assets/LustBGMusic.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 500px;
+    width: 100%; 
+    z-index: 0;
+}
+
+.music-24 {
+    background-image: url("Assets/24FreestyleBG.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 500px;
+    width: 100%; 
+    z-index: 0;
+}
+
+.music-mixedf {
+    background-image: url("Assets/MixedFBackground.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 500px;
+    width: 100%; 
+    z-index: 0;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    color: white;
+    align-items: center;
+    padding: 50px 0 50px 200px;
+    z-index: 1;
+    white-space: nowrap;
+}
+
+.info h3 {
+    font-family: Seagram;
+    font-size: 75px;
+    margin-right: 40px;
+}
+
+.music-section  {
+    display: flex;
+    flex-direction: row;
+    color: white;
+    align-items: center;
+    padding-bottom: 50px;
+    padding-left: 200px;
+}
+
+.music-section h3 {
+    font-family: Seagram;
+    font-size: 75px;
+    padding-left: 10px;
+    width: 300px;
+    white-space: nowrap;
+}
+
+.music-section #play {
+    margin-top: 25px;
+    margin-left: 20px;
+    width: 50px;
+    height: 50px;
+}
+
+.nav-section {
+  position: fixed;
+  bottom: 0;          /* cola ao fundo */
+  left: 0;            /* encosta à esquerda */
+  width: 100%;        /* ocupa a largura toda */
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center; /* alinha verticalmente */
+  background-color: white;
+  z-index: 1000;      /* fica por cima de vídeos/overlays */
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
+}
+
+.nav-section img {
+    width: 40px;
+    height: 40px;
+}
